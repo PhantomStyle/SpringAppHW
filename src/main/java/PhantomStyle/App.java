@@ -1,6 +1,6 @@
 package PhantomStyle;
 
-import PhantomStyle.dao.AccountService;
+import PhantomStyle.service.AccountService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

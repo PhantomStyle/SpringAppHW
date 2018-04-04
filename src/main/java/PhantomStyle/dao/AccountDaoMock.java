@@ -3,10 +3,7 @@ package PhantomStyle.dao;
 import PhantomStyle.domain.Account;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class AccountDaoMock implements AccountDao {
@@ -20,29 +17,17 @@ public class AccountDaoMock implements AccountDao {
         accounts.put(4L, new Account(4L, "Lena", 10L, 25.0));
     }
 
-    public List getAll() {
-        return Arrays.asList(accounts.values().toArray());
+    public List<Account> getAll() {
+        return new ArrayList<>(accounts.values());
     }
 
     public Account getById(Long id) {
-        final Account[] account = new Account[1];
-        accounts.entrySet().stream()
-                .forEach(e -> {
-                    if (e.getValue().getId().equals(id)) {
-                        account[0] = e.getValue();
-                    }
-                });
-        return account[0];
+        return accounts.get(id);
     }
 
-    public Account getByOwner(String owner) {
-        final Account[] account = new Account[1];
-        accounts.entrySet().stream()
-                .forEach(e -> {
-                    if (e.getValue().getOwnerId().equals(owner)) {
-                        account[0] = e.getValue();
-                    }
-                });
-        return account[0];
+    public Account getByOwner(Long ownerId) {
+        return accounts.entrySet().stream()
+                .filter(e -> e.getValue().getOwnerId().equals(ownerId))
+                .findAny().get().getValue();
     }
 }
