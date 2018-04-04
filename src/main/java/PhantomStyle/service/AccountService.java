@@ -38,11 +38,5 @@ public class AccountService {
                 .filter(e -> e.getOwnerId().equals(ownerId))
                 .mapToDouble(Account::getVolume)
                 .sum();
-//                .forEach(e -> {
-//                    if (e.getOwnerId().equals(ownerId)) {
-//                        ret[0] += e.getVolume();
-//                    }
-//                });
-//        return ret[0];
     }
 }
