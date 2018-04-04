@@ -33,7 +33,6 @@ public class AccountService {
     }
 
     public double getTotalOwnerVolume(Long ownerId) {
-        final long[] ret = {0};
         return accountDao.getAll().stream()
                 .filter(e -> e.getOwnerId().equals(ownerId))
                 .mapToDouble(Account::getVolume)
