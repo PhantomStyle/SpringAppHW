@@ -32,14 +32,17 @@ public class AccountService {
                 .sum();
     }
 
-    public long getTotalOwnerVolume(Long ownerId) {
+    public double getTotalOwnerVolume(Long ownerId) {
         final long[] ret = {0};
-        accountDao.getAll().stream()
-                .forEach(e -> {
-                    if (e.getOwnerId().equals(ownerId)) {
-                        ret[0] += e.getVolume();
-                    }
-                });
-        return ret[0];
+        return accountDao.getAll().stream()
+                .filter(e -> e.getOwnerId().equals(ownerId))
+                .mapToDouble(Account::getVolume)
+                .sum();
+//                .forEach(e -> {
+//                    if (e.getOwnerId().equals(ownerId)) {
+//                        ret[0] += e.getVolume();
+//                    }
+//                });
+//        return ret[0];
     }
 }

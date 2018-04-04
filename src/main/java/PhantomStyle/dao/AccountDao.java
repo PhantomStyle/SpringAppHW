@@ -9,5 +9,5 @@ public interface AccountDao {
 
     Account getById(Long id);
 
-    Account getByOwner(Long ownerId);
+    List<Account> getByOwner(Long ownerId);
 }

@@ -19,5 +19,6 @@ public class App {
         bean.multiplyOwner(20L, 20.0);
         System.out.println("\nAfter changes");
         bean.printAll();
+        System.out.println();
     }
 }

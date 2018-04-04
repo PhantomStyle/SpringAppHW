@@ -4,6 +4,7 @@ import PhantomStyle.domain.Account;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class AccountDaoMock implements AccountDao {
@@ -25,9 +26,10 @@ public class AccountDaoMock implements AccountDao {
         return accounts.get(id);
     }
 
-    public Account getByOwner(Long ownerId) {
+    public List<Account> getByOwner(Long ownerId) {
         return accounts.entrySet().stream()
                 .filter(e -> e.getValue().getOwnerId().equals(ownerId))
-                .findAny().get().getValue();
+                .map(e -> e.getValue())
+                .collect(Collectors.toList());
     }
 }
